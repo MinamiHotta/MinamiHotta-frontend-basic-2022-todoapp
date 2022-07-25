@@ -5,7 +5,7 @@ import React from "react";
 import Component from "./index";
 
 export default {
-  component: Component,
+  component: Title,
   title: "Atoms/Title",
   parameters: {
     backgrounds: {
