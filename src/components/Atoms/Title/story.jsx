@@ -6,7 +6,6 @@ import BREAKPOINT from "../../../variables/breakpoint";
 import TEXT from "../../../variables/texts";
 import FONTFAMILY from "../../../variables/font_family";
 
-//*
 const Title = () => {
   return <StyledText>SIMPLE TODO APP</StyledText>;
 };
