@@ -1,24 +1,19 @@
-import styled from "styled-components";
-
 import React from "react";
-import COLOR from "../../../variables/color";
-import BREAKPOINT from "../../../variables/breakpoint";
-import TEXT from "../../../variables/texts";
-import FONTFAMILY from "../../../variables/font_family";
+import Component from "./index";
 
-const Title = () => {
-  return <StyledText>SIMPLE TODO APP</StyledText>;
+export default {
+  component: Component,
+  title: "Atoms/Title",
+  parameters: {
+    backgrounds: {
+      default: "dark",
+    },
+  },
 };
-export default Title;
 
-const StyledText = styled.div`
-  color: ${COLOR.WHITE};
-  ${TEXT.M}
-  font-family: ${FONTFAMILY.ROBOTO};
-  @media screen(min-width: ${BREAKPOINT.MEDIUM}) {
-    ${TEXT.L}
-  }
-`;
+const Template = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
 
 //Titleコンポーネントの定義
 //React コンポーネントと HTML 要素は同列に扱うことができる

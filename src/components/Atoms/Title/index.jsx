@@ -1,19 +1,20 @@
-//indexで作成したコンポーネントをstorybookに登録するためのもの
-//コンポーネントを作成する際は毎回これをコピペ
-//ただし、9行目のtitleの名前だけ変える
 import React from "react";
-import Title from "./index";
+import styled from "styled-components";
+import COLOR from "../../../variables/color";
+import BREAKPOINT from "../../../variables/breakpoint";
+import TEXT from "../../../variables/texts";
+import FONTFAMILY from "../../../variables/font_family";
 
-export default {
-  component: Title,
-  title: "Atoms/Title",
-  parameters: {
-    backgrounds: {
-      default: "dark",
-    },
-  },
+const Title = () => {
+  return <StyledText>SIMPLE TODO APP</StyledText>;
 };
+export default Title;
 
-const Template = (args) => <Component {...args} />;
-
-export const Default = Template.bind([]);
+const StyledText = styled.div`
+  color: ${COLOR.WHITE};
+  ${TEXT.M}
+  font-family: ${FONTFAMILY.ROBOTO};
+  @media screen(min-width: ${BREAKPOINT.MEDIUM}) {
+    ${TEXT.L}
+  }
+`;
