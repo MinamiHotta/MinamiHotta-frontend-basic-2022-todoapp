@@ -14,7 +14,3 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const Default = Template.bind({});
-
-//Titleコンポーネントの定義
-//React コンポーネントと HTML 要素は同列に扱うことができる
-//例：div をStyledTextに変えた
