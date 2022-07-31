@@ -2,10 +2,10 @@
 //コンポーネントを作成する際は毎回これをコピペ
 //ただし、9行目のtitleの名前だけ変える
 import React from "react";
-import Component from "./index";
+import Title from "./index";
 
 export default {
-  component: Component,
+  component: Title,
   title: "Atoms/Title",
   parameters: {
     backgrounds: {
