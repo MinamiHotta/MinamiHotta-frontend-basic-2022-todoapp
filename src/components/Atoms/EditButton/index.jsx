@@ -3,13 +3,9 @@ import pencil from "../../../assets/svg/pencil.svg";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
 
-const SampleButton = ({ onClick }) => {
-  return <button onClick={onClick}>ボタン</button>;
-};
-
-const EditButton = () => {
+const EditButton = ({checked}) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={checked}>
       <HoverCircle />
       <Img src={pencil} />
     </StyledButton>
@@ -24,6 +20,16 @@ const Img = styled.img`
   top: 10px;
 `;
 
+const HoverCircle = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: ${COLOR.LIGHT_GRAY};
+  opacity: 0;
+  transition:0.2s;
+`;
+
 const StyledButton = styled.button`
   display: flex;
   justify-content: center;
@@ -33,15 +39,10 @@ const StyledButton = styled.button`
   border-radius: 50%;
   background-color: transparent;
   border: none;
-  &: hover> ${HoverCircle};
+  &:hover > ${HoverCircle}{
+    opacity:0.2;
+  }
 `;
 //OPTIMIZE:どこまでコンポーネントに分けるべきか
-const HoverCircle = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${COLOR.LIGHT_GRAY};
-  opacity: 0.2;
-`;
+
 //FIXME:hover時だけでなく常に表示されてしまう、HoverCircleもexportすべき？
