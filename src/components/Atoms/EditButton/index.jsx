@@ -41,6 +41,7 @@ const StyledButton = styled.button`
   border: none;
   &:hover > ${HoverCircle}{
     opacity:0.2;
+    cursor: pointer;
   }
 `;
 //OPTIMIZE:どこまでコンポーネントに分けるべきか
