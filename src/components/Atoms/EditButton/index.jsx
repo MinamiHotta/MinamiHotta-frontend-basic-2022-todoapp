@@ -14,7 +14,6 @@ const EditButton = ({checked}) => {
 export default EditButton;
 
 const Img = styled.img`
-  display: absolute;
   width: 15px;
   height: 15px;
   top: 10px;
