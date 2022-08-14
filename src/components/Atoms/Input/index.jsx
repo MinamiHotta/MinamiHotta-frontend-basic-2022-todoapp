@@ -7,7 +7,6 @@ const Input = ({ defaultValue, onEditComplete }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    ref.current.style.width = "1000px";
     ref.current.value = defaultValue;
 
     ref.current.onblur = onEditComplete;
@@ -26,7 +25,6 @@ export default Input;
 
 //このサイズ指定必要？
 const InputWrapper = styled.div`
-  position: relative;
   width: 232px;
   height: 20px;
 `;
@@ -38,4 +36,5 @@ const StyledText = styled.input`
   padding: 0px 4px;
   border: none;
   border-radius: 2px;
+  outline: 0;
 `;
