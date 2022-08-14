@@ -23,7 +23,6 @@ const Input = ({ defaultValue, onEditComplete }) => {
 };
 export default Input;
 
-//このサイズ指定必要？
 const InputWrapper = styled.div`
   width: 232px;
   height: 20px;
