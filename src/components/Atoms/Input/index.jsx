@@ -14,19 +14,12 @@ const Input = ({ defaultValue = "", onEditComplete }) => {
     };
   }, []);
 
-  return (
-    <InputWrapper>
-      <StyledInput ref={ref} defaultValue={defaultValue} />
-    </InputWrapper>
-  );
+  return <StyledInput ref={ref} defaultValue={defaultValue} />;
 };
 export default Input;
 
-const InputWrapper = styled.div`
-  height: 20px;
-`;
-
 const StyledInput = styled.input`
+  width: 100%;
   color: ${COLOR.LIGHT_GRAY};
   ${TEXT.S}
   background-color: ${COLOR.BLACK};
