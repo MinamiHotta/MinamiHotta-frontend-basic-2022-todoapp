@@ -15,10 +15,17 @@ const Template = (args) => <Component {...args} />;
 
 export const Default = Template.bind({});
 
-//動作確認のために、defaultValueの値と、イベント発生時にコンソールに出現する印を任意で設定しました。いずれも、マージの際には消去します。
 Default.args = {
-  defaultValue: "a",
+  defaultValue: "",
   onEditComplete: (e) => {
-    console.log("★");
+    console.log(e);
   },
 };
+
+Default.decorators = [
+  (Story) => (
+    <div style={{ width: "232px" }}>
+      <Story />
+    </div>
+  ),
+];
