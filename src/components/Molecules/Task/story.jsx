@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Component from "./index";
 
 export default {
   component: Component,
-  title: "Atoms/EditButton",
+  title: "Molecules/Task",
   parameters: {
     backgrounds: {
       default: "dark",
@@ -14,6 +14,9 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const Default = Template.bind({});
+
 Default.args = {
-  onClick: () => console.log("clicked"),
+  checked: () => console.log("task completed"),
+  taskName: "S text",
+  onEditComplete: (taskName) => console.log(`taskname changed ${taskName}`),
 };
