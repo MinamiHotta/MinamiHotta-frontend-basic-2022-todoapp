@@ -15,7 +15,7 @@ const Task = ({ checked, taskName, onEditComplete }) => {
   return (
     <EachTaskWrapper>
       <Checkbox checked={checked} />
-      <TaskContainer>
+      <div>
         {nowOnEdit ? (
           <Input
             defaultValue={taskName}
@@ -30,7 +30,7 @@ const Task = ({ checked, taskName, onEditComplete }) => {
             <EditButton onClick={stateEditButton} />{" "}
           </TextContainer>
         )}
-      </TaskContainer>
+      </div>
     </EachTaskWrapper>
   );
 };
@@ -43,10 +43,6 @@ const EachTaskWrapper = styled.div`
 const TextContainer = styled.div`
   display: flex;
   width: 216px;
-  justify-content: space-between;
-`;
-const TaskContainer = styled.div`
-  display: flex;
   justify-content: space-between;
 `;
 const TaskText = styled.p`
