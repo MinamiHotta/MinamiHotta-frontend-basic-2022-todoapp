@@ -28,7 +28,6 @@ const Task = ({ checked, taskName, onEditComplete }) => {
           <TextContainer>
             <TaskText>{taskName}</TaskText>
             <EditButton onClick={stateEditButton} />
-            {""}
           </TextContainer>
         )}
       </TaskContainer>
