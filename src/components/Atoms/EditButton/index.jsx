@@ -3,9 +3,9 @@ import pencil from "../../../assets/svg/pencil.svg";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
 
-const EditButton = ({checked}) => {
+const EditButton = ({ onClick }) => {
   return (
-    <StyledButton onClick={checked}>
+    <StyledButton onClick={onClick}>
       <HoverCircle />
       <Img src={pencil} />
     </StyledButton>
@@ -26,7 +26,7 @@ const HoverCircle = styled.div`
   border-radius: 50%;
   background-color: ${COLOR.LIGHT_GRAY};
   opacity: 0;
-  transition:0.2s;
+  transition: 0.2s;
 `;
 
 const StyledButton = styled.button`
@@ -38,8 +38,8 @@ const StyledButton = styled.button`
   border-radius: 50%;
   background-color: transparent;
   border: none;
-  &:hover > ${HoverCircle}{
-    opacity:0.2;
+  &:hover > ${HoverCircle} {
+    opacity: 0.2;
     cursor: pointer;
   }
 `;
