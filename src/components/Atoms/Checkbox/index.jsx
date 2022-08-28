@@ -22,7 +22,6 @@ const StyledBox = styled.div`
   display: flex;
   width: 20px;
   height: 20px;
-  margin-right: 10px;
   border: 2px solid ${COLOR.LIGHT_GRAY};
   border-radius: 2px;
   &:hover > ${HoverCheck} {
