@@ -2,30 +2,50 @@ import { useState } from "react";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 
-let TaskState = ["TODO", "DONE"];
+//Advice1:タスクの追加と表示で分ける
+//Advice2:ボタンが押されたら、molecules/taskに書いてあるようにchecked, taskName, onEditCompleteが何なのかを記した連想配列を追加する
 
-const onEditComplete = ({ taskName, setNowOnEdit }) => {
-  //以下4行の内容は重複がある...?
-  const [task, setTask] = useState({
-    name: taskName,
-    state: TaskState[0],
-  });
-  setTask(task);
-  setNowOnEdit(false);
+const TodoCard = () => {
+  const handleAddButtonClick = () => {
+    //デフォルト編集中を表すpropsにtrueを渡す
+    stateEditButton();
 
-  //stateはuseStateというオブジェクト内のstateに紐づいていない?
-  //AddTaskButton　onClickの記述と、前後関係的に大丈夫か?
-  //やりたいこと:filter関数によってtaskDoneという配列に入れられたタスクが、Taskとして表示されるようにしたい=>27行目の{taskDone}の記述が不十分、<Task/>という要素をどこかに入れたい
-  const taskDone = useState.filter(({ state }) => {
+    //タスク名と状態のオブジェクト
+    const [task, setTask] = useState({ name: taskName, state: "TODO" }, []);
+  };
+  //Inputの<Checkbox checked={checked}と紐づけたい
+  const doneTask = ({ checked }) => {
+    setTask((task.state = "DONE"));
+  };
+
+  //状態がTODOのものを抽出した配列
+  const taskArray = task.filter(({ state }) => {
     return state === "TODO";
   });
+
+  //Moleculesのstory.jsxを参考にしている、どうonEditCompleteを受け渡せばよいのか？
+  const onEditComplete = ({ taskName, setNowOnEdit }) => {
+    //仮のconsole.log
+    console.log(`taskname changed ${taskName}`);
+
+    setTask((task.name = taskName));
+    //タスク名が空だったら～のケース
+    if (taskName === null) {
+      setTask((task.state = "DONE"));
+    }
+    setNowOnEdit(false);
+  };
+
+  //{nowOnEdit?(<Input/>):}のようにreturn内にjs配置するのか？
   return (
-    <TodoCard>
-      <AddTaskButton
-        onClick={useState({ name: taskName, state: TaskState[1] })}
-      />
-      <TasksContainer>{taskDone}</TasksContainer>
-    </TodoCard>
+    <>
+      <AddTaskButton onClick={handleAddButtonClick} />
+      <TasksContainer>
+        <Task>{taskArray}</Task>
+      </TasksContainer>
+    </>
   );
 };
-const TodoCard = styled.div``;
+export default TodoCard;
+
+const TasksContainer = styled.div``;
