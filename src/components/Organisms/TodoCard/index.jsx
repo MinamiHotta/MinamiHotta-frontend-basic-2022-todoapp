@@ -39,15 +39,16 @@ const TodoCard = () => {
     ));
 
   return (
-    <Todo>
+    <TodoContainer>
       <AddTaskButton checked={handleAddButtonClick} />
       <TasksContainer>{taskArray}</TasksContainer>
-    </Todo>
+    </TodoContainer>
   );
 };
 export default TodoCard;
 
-const Todo = styled.div`
+const TodoContainer = styled.div`
+  width: 500px;
   padding: 22px 26px;
   background-color: ${COLOR.LIGHT_BLACK};
   border-radius: 4px;
