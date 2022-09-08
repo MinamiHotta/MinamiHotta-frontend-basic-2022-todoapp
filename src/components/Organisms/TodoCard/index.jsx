@@ -2,6 +2,7 @@ import { useState } from "react";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 import styled from "styled-components";
+import COLOR from "../../../variables/color";
 
 const TodoCard = () => {
   const [task, setTask] = useState([]);
@@ -38,14 +39,19 @@ const TodoCard = () => {
     ));
 
   return (
-    <>
+    <Todo>
       <AddTaskButton checked={handleAddButtonClick} />
       <TasksContainer>{taskArray}</TasksContainer>
-    </>
+    </Todo>
   );
 };
 export default TodoCard;
 
+const Todo = styled.div`
+  padding: 22px 26px;
+  background-color: ${COLOR.BLACK};
+  border-radius: 4px;
+`;
 const TasksContainer = styled.div`
   display: flex;
   flex-direction: column;
