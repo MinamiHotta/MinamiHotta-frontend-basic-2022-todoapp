@@ -1,51 +1,58 @@
 import { useState } from "react";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
-
-//Advice1:タスクの追加と表示で分ける
-//Advice2:ボタンが押されたら、molecules/taskに書いてあるようにchecked, taskName, onEditCompleteが何なのかを記した連想配列を追加する
+import styled from "styled-components";
 
 const TodoCard = () => {
-  const handleAddButtonClick = () => {
-    //デフォルト編集中を表すpropsにtrueを渡す
-    stateEditButton();
+  const [task, setTask] = useState([]);
 
-    //タスク名と状態のオブジェクト
-    const [task, setTask] = useState({ name: taskName, state: "TODO" }, []);
+  const handleAddButtonClick = () => {
+    setTask([...task, { name: "", state: "TODO" }]);
   };
-  //Inputの<Checkbox checked={checked}と紐づけたい
+
   const doneTask = ({ checked }) => {
     setTask((task.state = "DONE"));
   };
 
-  //状態がTODOのものを抽出した配列
-  const taskArray = task.filter(({ state }) => {
-    return state === "TODO";
-  });
+  const taskArray = task
+    .filter(({ state }) => {
+      return state === "TODO";
+    })
+    .map(({ name }, index) => (
+      <Task
+        key={index}
+        checked={() => {
+          let taskCopied = [...task];
+          taskCopied[index].state = "DONE";
+          setTask(taskCopied);
+        }}
+        taskName={name}
+        onEditComplete={(name) => {
+          let taskCopied = [...task];
+          if (name === "") {
+            taskCopied = taskCopied.filter((_, i) => {
+              return index != i;
+            });
+          } else {
+            taskCopied[index].name = name;
+          }
+          setTask(taskCopied);
+        }}
+      />
+    ));
 
-  //Moleculesのstory.jsxを参考にしている、どうonEditCompleteを受け渡せばよいのか？
-  const onEditComplete = ({ taskName, setNowOnEdit }) => {
-    //仮のconsole.log
-    console.log(`taskname changed ${taskName}`);
-
-    setTask((task.name = taskName));
-    //タスク名が空だったら～のケース
-    if (taskName === null) {
-      setTask((task.state = "DONE"));
-    }
-    setNowOnEdit(false);
-  };
-
-  //{nowOnEdit?(<Input/>):}のようにreturn内にjs配置するのか？
   return (
     <>
-      <AddTaskButton onClick={handleAddButtonClick} />
-      <TasksContainer>
-        <Task>{taskArray}</Task>
-      </TasksContainer>
+      <AddTaskButton checked={handleAddButtonClick} />
+      <TasksContainer>{taskArray}</TasksContainer>
     </>
   );
 };
 export default TodoCard;
 
-const TasksContainer = styled.div``;
+const TasksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 12px 6px 20px;
+  gap: 10px;
+`;
