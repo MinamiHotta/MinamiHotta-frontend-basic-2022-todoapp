@@ -49,7 +49,7 @@ export default TodoCard;
 
 const Todo = styled.div`
   padding: 22px 26px;
-  background-color: ${COLOR.BLACK};
+  background-color: ${COLOR.LIGHT_BLACK};
   border-radius: 4px;
 `;
 const TasksContainer = styled.div`
