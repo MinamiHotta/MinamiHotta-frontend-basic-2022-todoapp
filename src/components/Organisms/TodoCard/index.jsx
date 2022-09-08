@@ -10,10 +10,6 @@ const TodoCard = () => {
     setTask([...task, { name: "", state: "TODO" }]);
   };
 
-  const doneTask = ({ checked }) => {
-    setTask((task.state = "DONE"));
-  };
-
   const taskArray = task
     .filter(({ state }) => {
       return state === "TODO";
