@@ -14,7 +14,7 @@ const StyledText = styled.div`
   color: ${COLOR.WHITE};
   ${TEXT.M}
   font-family: ${FONTFAMILY.ROBOTO};
-  @media screen(min-width: ${BREAKPOINT.MEDIUM}) {
+  @media screen and (min-width: ${BREAKPOINT.MEDIUM}) {
     ${TEXT.L}
   }
 `;
