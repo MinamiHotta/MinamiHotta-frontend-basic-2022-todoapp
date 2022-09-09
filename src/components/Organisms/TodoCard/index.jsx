@@ -28,7 +28,7 @@ const TodoCard = () => {
           let taskCopied = [...task];
           if (name === "") {
             taskCopied = taskCopied.filter((_, i) => {
-              return index != i;
+              return index !== i;
             });
           } else {
             taskCopied[index].name = name;
@@ -37,7 +37,6 @@ const TodoCard = () => {
         }}
       />
     ));
-
   return (
     <TodoContainer>
       <AddTaskButton checked={handleAddButtonClick} />

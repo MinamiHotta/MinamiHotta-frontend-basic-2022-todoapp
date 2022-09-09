@@ -46,6 +46,7 @@ const TextContainer = styled.div`
   justify-content: space-between;
 `;
 const TaskContainer = styled.div`
+  width: 418px;
   margin-left: 10px;
 `;
 const TaskText = styled.p`
