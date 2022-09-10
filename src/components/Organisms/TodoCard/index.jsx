@@ -59,6 +59,7 @@ const TodoContainer = styled.div`
   padding: 22px 26px;
   background-color: ${COLOR.LIGHT_BLACK};
   border-radius: 4px;
+  margin-top: 20px;
   @media screen and (min-width: ${BREAKPOINT.MEDIUM}) {
     width: 500px;
   }
