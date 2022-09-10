@@ -12,31 +12,38 @@ const TodoCard = () => {
   };
 
   const taskArray = task
-    .filter(({ state }) => {
-      return state === "TODO";
+    .map(({ name, state }, index) => {
+      if (state === "TODO") {
+        return (
+          <Task
+            key={index}
+            checked={() => {
+              let taskCopied = [...task];
+              taskCopied[index].state = "DONE";
+              setTask(taskCopied);
+            }}
+            taskName={name}
+            onEditComplete={(name) => {
+              let taskCopied = [...task];
+              if (name === "") {
+                taskCopied = taskCopied.filter((_, i) => {
+                  return index !== i;
+                });
+              } else {
+                taskCopied[index].name = name;
+              }
+              setTask(taskCopied);
+            }}
+          />
+        );
+      } else {
+        return null;
+      }
     })
-    .map(({ name }, index) => (
-      <Task
-        key={index}
-        checked={() => {
-          let taskCopied = [...task];
-          taskCopied[index].state = "DONE";
-          setTask(taskCopied);
-        }}
-        taskName={name}
-        onEditComplete={(name) => {
-          let taskCopied = [...task];
-          if (name === "") {
-            taskCopied = taskCopied.filter((_, i) => {
-              return index !== i;
-            });
-          } else {
-            taskCopied[index].name = name;
-          }
-          setTask(taskCopied);
-        }}
-      />
-    ));
+    .filter((value) => {
+      return value !== null;
+    });
+
   return (
     <TodoContainer>
       <AddTaskButton checked={handleAddButtonClick} />
