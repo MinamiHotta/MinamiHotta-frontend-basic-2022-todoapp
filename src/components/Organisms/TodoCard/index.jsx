@@ -3,6 +3,7 @@ import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
+import BREAKPOINT from "../../../variables/breakpoint";
 
 const TodoCard = () => {
   const [task, setTask] = useState([]);
@@ -54,10 +55,14 @@ const TodoCard = () => {
 export default TodoCard;
 
 const TodoContainer = styled.div`
-  width: 500px;
+  width: 100%;
   padding: 22px 26px;
   background-color: ${COLOR.LIGHT_BLACK};
   border-radius: 4px;
+  margin-top: 20px;
+  @media screen and (min-width: ${BREAKPOINT.MEDIUM}) {
+    width: 500px;
+  }
 `;
 const TasksContainer = styled.div`
   display: flex;
