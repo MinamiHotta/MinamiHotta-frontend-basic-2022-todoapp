@@ -3,17 +3,17 @@ import styled from "styled-components";
 import Title from "../../Atoms/Title";
 import TodoCard from "../../Organisms/TodoCard";
 
-const Pages = () => {
+const MainPage = () => {
   return (
-    <PagesContainer>
+    <Container>
       <Title />
       <TodoCard />
-    </PagesContainer>
+    </Container>
   );
 };
-export default Pages;
+export default MainPage;
 
-const PagesContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
