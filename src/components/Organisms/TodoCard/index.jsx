@@ -6,35 +6,11 @@ import COLOR from "../../../variables/color";
 import BREAKPOINT from "../../../variables/breakpoint";
 
 const TodoCard = () => {
-  let data;
-  if (localStorage.getItem("taskData") !== null) {
-    data = JSON.parse(localStorage.getItem("taskData"));
-  } else {
+  const data = JSON.parse(localStorage.getItem("taskData"));
+  if ("taskData" === undefined) {
     data = null;
   }
-  /*if (localStorage.getItem("taskData") !== null) {
-    const data = JSON.parse(localStorage.getItem("taskData"));
-  } else {
-    const data = null;
-  } 
-  や
-  const data=localStorage.getItem("taskData");
-  if("taskData"===undefined){
-    const presentData=null;
-  }else{
-    const presentData=JSON.parse(data);
-  }
-  や
-  const data=localStorage.getItem("taskData");
-  if(data===undefined){
-    const presentData=null;
-  }else{
-    const presentData=JSON.parse(data);
-  }
-  でもうまくいかず💦
-  */
 
-  console.log(data);
   const [task, setTask] = useState([...data]);
 
   const handleAddButtonClick = () => {
@@ -65,7 +41,6 @@ const TodoCard = () => {
               setTask(taskCopied);
 
               localStorage.setItem("taskData", JSON.stringify(taskCopied));
-              console.log("更新");
             }}
           />
         );
