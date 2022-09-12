@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 import styled from "styled-components";
@@ -6,7 +6,36 @@ import COLOR from "../../../variables/color";
 import BREAKPOINT from "../../../variables/breakpoint";
 
 const TodoCard = () => {
-  const [task, setTask] = useState([]);
+  let data;
+  if (localStorage.getItem("taskData") !== null) {
+    data = JSON.parse(localStorage.getItem("taskData"));
+  } else {
+    data = null;
+  }
+  /*if (localStorage.getItem("taskData") !== null) {
+    const data = JSON.parse(localStorage.getItem("taskData"));
+  } else {
+    const data = null;
+  } 
+  や
+  const data=localStorage.getItem("taskData");
+  if("taskData"===undefined){
+    const presentData=null;
+  }else{
+    const presentData=JSON.parse(data);
+  }
+  や
+  const data=localStorage.getItem("taskData");
+  if(data===undefined){
+    const presentData=null;
+  }else{
+    const presentData=JSON.parse(data);
+  }
+  でもうまくいかず💦
+  */
+
+  console.log(data);
+  const [task, setTask] = useState([...data]);
 
   const handleAddButtonClick = () => {
     setTask([...task, { name: "", state: "TODO" }]);
@@ -34,6 +63,9 @@ const TodoCard = () => {
                 taskCopied[index].name = name;
               }
               setTask(taskCopied);
+
+              localStorage.setItem("taskData", JSON.stringify(taskCopied));
+              console.log("更新");
             }}
           />
         );
