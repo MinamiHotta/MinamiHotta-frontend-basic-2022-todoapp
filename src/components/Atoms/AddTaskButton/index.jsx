@@ -4,7 +4,7 @@ import plus from "../../../assets/svg/plus.svg";
 import COLOR from "../../../variables/color";
 import TEXT from "../../../variables/texts";
 
-const AddTaskButton = ({checked}) => {
+const AddTaskButton = ({ checked }) => {
   return (
     <StyledAddButton onClick={checked}>
       <Img src={plus} />
@@ -15,17 +15,15 @@ const AddTaskButton = ({checked}) => {
 export default AddTaskButton;
 
 const StyledAddButton = styled.button`
-  display:flex;
-  width: 126px;
-  height: 24px;
+  display: flex;
   padding: 2px 6px;
   border-radius: 12px;
-  background-color:transparent;
-  border:none;
-  transition:0.2s;
-  &:hover{
-    background-color:rgba(70, 163, 129, 0.2);
-    cursor:pointer;
+  background-color: transparent;
+  border: none;
+  transition: 0.2s;
+  &:hover {
+    background-color: rgba(70, 163, 129, 0.2);
+    cursor: pointer;
   }
 `;
 

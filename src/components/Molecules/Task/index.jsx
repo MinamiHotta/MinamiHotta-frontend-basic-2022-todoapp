@@ -42,10 +42,10 @@ const EachTaskWrapper = styled.div`
 `;
 const TextContainer = styled.div`
   display: flex;
-  width: 216px;
   justify-content: space-between;
 `;
 const TaskContainer = styled.div`
+  width: 100%;
   margin-left: 10px;
 `;
 const TaskText = styled.p`
