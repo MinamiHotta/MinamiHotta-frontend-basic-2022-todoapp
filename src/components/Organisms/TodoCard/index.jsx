@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 import styled from "styled-components";
@@ -6,17 +6,20 @@ import COLOR from "../../../variables/color";
 import BREAKPOINT from "../../../variables/breakpoint";
 
 const TodoCard = () => {
-  const data = JSON.parse(localStorage.getItem("taskData"));
-  if ("taskData" === undefined) {
-    data = null;
-  }
-
-  const [task, setTask] = useState([...data]);
+  const [task, setTask] = useState([]);
 
   const handleAddButtonClick = () => {
     setTask([...task, { name: "", state: "TODO" }]);
   };
 
+  //refはAtoms/Inputから受け取っているつもり
+  const initialFocus = () => {
+    useEffect((ref) => {
+      ref.current.blur();
+    }, []);
+  };
+
+  //onLoad(=ページ読み込み時)にLocalStorageから値を持ってきているつもり
   const taskArray = task
     .map(({ name, state }, index) => {
       if (state === "TODO") {
@@ -42,6 +45,7 @@ const TodoCard = () => {
 
               localStorage.setItem("taskData", JSON.stringify(taskCopied));
             }}
+            focus={initialFocus()}
           />
         );
       } else {
