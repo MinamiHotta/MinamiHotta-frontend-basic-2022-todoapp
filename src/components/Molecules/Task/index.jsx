@@ -6,7 +6,7 @@ import Checkbox from "../../Atoms/Checkbox";
 import Input from "../../Atoms/Input";
 import EditButton from "../../Atoms/EditButton";
 
-const Task = ({ checked, taskName, onEditComplete }) => {
+const Task = ({ checked, taskName, onEditComplete, focus }) => {
   const [nowOnEdit, setNowOnEdit] = useState(true); //デフォルトはtrueかfalse
 
   const stateEditButton = () => {

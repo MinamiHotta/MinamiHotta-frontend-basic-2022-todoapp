@@ -19,4 +19,5 @@ Default.args = {
   checked: () => console.log("task completed"),
   taskName: "S text",
   onEditComplete: (taskName) => console.log(`taskname changed ${taskName}`),
+  //focus: (props) => console.log(props),
 };
