@@ -26,6 +26,14 @@ const TodoCard = () => {
         return (
           <Task
             key={index}
+            onLoad={() => {
+              const data = JSON.parse(localStorage.getItem("taskData"));
+              if ("taskData" === undefined) {
+                data = null;
+              }
+
+              setTask([...data]);
+            }}
             checked={() => {
               let taskCopied = [...task];
               taskCopied[index].state = "DONE";
