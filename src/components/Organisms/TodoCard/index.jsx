@@ -7,37 +7,34 @@ import BREAKPOINT from "../../../variables/breakpoint";
 
 const TodoCard = () => {
   const [task, setTask] = useState([]);
+  const [creating, setCreating] = useState(false);
+  const [reload,setReload]=useState(true);
+
+  if(reload===true){
+    const data = JSON.parse(localStorage.getItem("taskData"));
+    if ("taskData" === undefined) {
+      data = null;
+    }
+
+    setTask([...data]);
+  }
 
   const handleAddButtonClick = () => {
-    setTask([...task, { name: "", state: "TODO" }]);
+    setCreating(creating=true);
+    setReload(reload=false);
   };
 
-  //refはAtoms/Inputから受け取っているつもり
-  const initialFocus = () => {
-    useEffect((ref) => {
-      ref.current.blur();
-    }, []);
-  };
-
-  //onLoad(=ページ読み込み時)にLocalStorageから値を持ってきているつもり
   const taskArray = task
     .map(({ name, state }, index) => {
       if (state === "TODO") {
         return (
           <Task
             key={index}
-            onLoad={() => {
-              const data = JSON.parse(localStorage.getItem("taskData"));
-              if ("taskData" === undefined) {
-                data = null;
-              }
-
-              setTask([...data]);
-            }}
             checked={() => {
               let taskCopied = [...task];
               taskCopied[index].state = "DONE";
               setTask(taskCopied);
+              setCreating(creating = false);
             }}
             taskName={name}
             onEditComplete={(name) => {
@@ -53,14 +50,13 @@ const TodoCard = () => {
 
               localStorage.setItem("taskData", JSON.stringify(taskCopied));
             }}
-            focus={initialFocus()}
+            defaultFocused={false}
           />
         );
       } else {
         return null;
       }
-    })
-    .filter((value) => {
+    }).filter((value) => {
       return value !== null;
     });
 
@@ -70,7 +66,7 @@ const TodoCard = () => {
       <TasksContainer>{taskArray}</TasksContainer>
     </TodoContainer>
   );
-};
+  };
 export default TodoCard;
 
 const TodoContainer = styled.div`
