@@ -7,17 +7,12 @@ import Input from "../../Atoms/Input";
 import EditButton from "../../Atoms/EditButton";
 
 const Task = ({ checked, taskName, onEditComplete, defaultFocused }) => {
-  const [nowOnEdit, setNowOnEdit] = useState(true); //デフォルトはtrueかfalse
+  const [nowOnEdit, setNowOnEdit] = useState(true);
 
   const stateEditButton = () => {
     setNowOnEdit(true);
   };
 
-  if (defaultFocused === false) {
-    Input.blur();
-  } else {
-    Input.focus();
-  }
   return (
     <EachTaskWrapper>
       <Checkbox checked={checked} />
@@ -29,6 +24,7 @@ const Task = ({ checked, taskName, onEditComplete, defaultFocused }) => {
               onEditComplete(taskName);
               setNowOnEdit(false);
             }}
+            defaultFocused={defaultFocused}
           />
         ) : (
           <TextContainer>

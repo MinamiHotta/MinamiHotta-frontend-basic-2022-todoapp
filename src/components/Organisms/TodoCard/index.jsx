@@ -8,9 +8,9 @@ import BREAKPOINT from "../../../variables/breakpoint";
 const TodoCard = () => {
   const [task, setTask] = useState([]);
   const [creating, setCreating] = useState(false);
-  const [reload,setReload]=useState(true);
+  const [reload, setReload] = useState(true);
 
-  if(reload===true){
+  if (reload === true) {
     const data = JSON.parse(localStorage.getItem("taskData"));
     if ("taskData" === undefined) {
       data = null;
@@ -20,8 +20,8 @@ const TodoCard = () => {
   }
 
   const handleAddButtonClick = () => {
-    setCreating(creating=true);
-    setReload(reload=false);
+    setCreating(true);
+    setReload(false);
   };
 
   const taskArray = task
@@ -34,7 +34,7 @@ const TodoCard = () => {
               let taskCopied = [...task];
               taskCopied[index].state = "DONE";
               setTask(taskCopied);
-              setCreating(creating = false);
+              setCreating(false);
             }}
             taskName={name}
             onEditComplete={(name) => {
@@ -56,9 +56,30 @@ const TodoCard = () => {
       } else {
         return null;
       }
-    }).filter((value) => {
+    })
+    .filter((value) => {
       return value !== null;
     });
+
+  if (creating === true) {
+    return (
+      <Task
+        key={taskArray.length}
+        checked={setCreating(false)}
+        taskName=""
+        onEditComplete={() => {
+          setCreating(false);
+
+          if (taskName === "") {
+            return;
+          } else {
+            setTask([...task, { name: "", state: "TODO" }]);
+          }
+        }}
+        defaultFocused={true}
+      />
+    );
+  }
 
   return (
     <TodoContainer>
@@ -66,7 +87,7 @@ const TodoCard = () => {
       <TasksContainer>{taskArray}</TasksContainer>
     </TodoContainer>
   );
-  };
+};
 export default TodoCard;
 
 const TodoContainer = styled.div`
