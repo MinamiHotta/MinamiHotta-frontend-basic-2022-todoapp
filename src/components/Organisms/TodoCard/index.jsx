@@ -4,8 +4,11 @@ import Task from "../../Molecules/Task";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
 import BREAKPOINT from "../../../variables/breakpoint";
+import { useAlertHandlerContext } from "../../../contexts/alert_handler";
 
 const TodoCard = () => {
+  const AlertHandlerContext = useAlertHandlerContext();
+
   const [task, setTask] = useState([]);
 
   const handleAddButtonClick = () => {
@@ -30,6 +33,7 @@ const TodoCard = () => {
                 taskCopied = taskCopied.filter((_, i) => {
                   return index !== i;
                 });
+                AlertHandlerContext.setAlert();
               } else {
                 taskCopied[index].name = name;
               }
