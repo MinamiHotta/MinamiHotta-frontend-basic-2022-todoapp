@@ -7,7 +7,7 @@ import Input from "../../Atoms/Input";
 import EditButton from "../../Atoms/EditButton";
 
 const Task = ({ checked, taskName, onEditComplete, defaultFocused }) => {
-  const [nowOnEdit, setNowOnEdit] = useState(true);
+  const [nowOnEdit, setNowOnEdit] = useState(defaultFocused);
 
   const stateEditButton = () => {
     setNowOnEdit(true);
