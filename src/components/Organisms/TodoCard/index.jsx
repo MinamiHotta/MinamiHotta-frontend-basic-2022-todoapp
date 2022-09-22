@@ -10,7 +10,7 @@ const TodoCard = () => {
   const [creating, setCreating] = useState(false);
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("taskData"))) {
+    if (!localStorage.getItem("taskData")) {
       setTask([]);
     } else {
       const data = JSON.parse(localStorage.getItem("taskData"));
