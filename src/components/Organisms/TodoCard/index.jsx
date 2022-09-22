@@ -33,7 +33,9 @@ const TodoCard = () => {
                 taskCopied = taskCopied.filter((_, i) => {
                   return index !== i;
                 });
-                AlertHandlerContext.setAlert();
+                AlertHandlerContext.setAlert(
+                  "タスクの名前が設定されていません。"
+                );
               } else {
                 taskCopied[index].name = name;
               }
