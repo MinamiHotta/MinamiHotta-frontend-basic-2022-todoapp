@@ -1,46 +1,35 @@
 import React from "react";
-import { jsx, css } from "@emotion/styled";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
+import BREAKPOINT from "../../../variables/breakpoint";
 
-const Alert = ({ errotText }) => {
-  if (errotText === "") {
-    return;
-  } else {
-    return (
-      <Container>
-        <AlertContainer className={attachClass()}>
-          <AlertText>{alertText}</AlertText>
-        </AlertContainer>
-      </Container>
-    );
-  }
+const Alert = ({ errorText, visible }) => {
+  return (
+    <AlertContainer className={visible ? "nowAppear" : ""}>
+      <AlertText>{errorText}</AlertText>
+    </AlertContainer>
+  );
 };
 export default Alert;
 
-//hoverの時を思い出して一番外側の要素をあえて作ったが...
-const Container = styled.div`
-  transition: 2s;
-`;
-
-//開始位置と出てくる位置の数値と、どう書くかが不明　Figmaのどこにある...?
-const fadeIn = styled.css`
-  opacity: 1;
-  left: 20px;
-  top: 40px;
-  @media screen and (min-width: ${BREAKPOINT.MEDIUM}) {
-    left: 520px;
-    top: 80px;
-  }
-`;
-const fadeOut = styled.css`
-  opacity: 0;
-`;
 const AlertContainer = styled.div`
-  width: 400px;
+  position: absolute;
   background-color: ${COLOR.RED};
   border-radius: 4px;
   padding: 10px 20px;
+  margin: 0px 20px;
+  transition: 0.5s;
+  opacity: 0;
+  top: 40px;
+  transform: translateY(-20px);
+  @media screen and (min-width: ${BREAKPOINT.MEDIUM}) {
+    top: 80px;
+    width: 400px;
+  }
+  &.nowAppear {
+    opacity: 1;
+    transform: none;
+  }
 `;
 const AlertText = styled.p`
   color: ${COLOR.WHITE};
