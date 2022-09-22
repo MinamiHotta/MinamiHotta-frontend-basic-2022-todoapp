@@ -15,7 +15,7 @@ export const AlertHandlerProvider = ({ children }) => {
 
   //Alertを閉じる関数
   const closeAlert = () => {
-    setAlertState({ visible: false, errorText: "" });
+    setAlertState({ visible: false, errorText: alertState.errorText });
   };
 
   const contextValue = {
