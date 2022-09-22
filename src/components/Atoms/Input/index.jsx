@@ -9,7 +9,7 @@ const Input = ({
   defaultFocused = false,
 }) => {
   const ref = useRef(null);
-  useEffect((defaultFocused) => {
+  useEffect(() => {
     if (defaultFocused === true) {
       ref.current.blur();
     } else {
