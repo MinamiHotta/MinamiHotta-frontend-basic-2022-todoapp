@@ -4,6 +4,7 @@ import { AlertHandlerProvider } from "../../../contexts/alert_handler";
 import Title from "../../Atoms/Title";
 import AlertManager from "../../Organisms/AlertManager";
 import TodoCard from "../../Organisms/TodoCard";
+import BREAKPOINT from "../../../variables/breakpoint";
 
 const MainPage = () => {
   return (
@@ -22,5 +23,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 20px;
+  @media screen and (min-width: ${BREAKPOINT.MEDIUM}) {
+    padding-top: 60px;
+  }
 `;
