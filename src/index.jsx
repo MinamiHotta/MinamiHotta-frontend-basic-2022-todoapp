@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import MainPage from "./components/Pages/MainPage";
-import { AlertHandlerProvider } from "../../../contexts/alert_handler";
-import AlertManager from "../../Organisms/AlertManager";
+import AlertManager from "../src/components/Organisms/AlertManager";
+import { AlertHandlerProvider } from "../src/contexts/alert_handler";
 
 ReactDOM.render(
   <AlertHandlerProvider>
