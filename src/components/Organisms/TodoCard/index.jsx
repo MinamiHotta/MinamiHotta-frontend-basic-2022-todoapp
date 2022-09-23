@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 import styled from "styled-components";
@@ -10,9 +10,23 @@ const TodoCard = () => {
   const AlertHandlerContext = useAlertHandlerContext();
 
   const [task, setTask] = useState([]);
+  const [creating, setCreating] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem("taskData")) {
+      setTask([]);
+    } else {
+      const data = JSON.parse(localStorage.getItem("taskData"));
+      setTask([...data]);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("taskData", JSON.stringify(task));
+  }, [task]);
 
   const handleAddButtonClick = () => {
-    setTask([...task, { name: "", state: "TODO" }]);
+    setCreating(true);
   };
 
   const taskArray = task
@@ -25,6 +39,7 @@ const TodoCard = () => {
               let taskCopied = [...task];
               taskCopied[index].state = "DONE";
               setTask(taskCopied);
+              setCreating(false);
             }}
             taskName={name}
             onEditComplete={(name) => {
@@ -41,6 +56,7 @@ const TodoCard = () => {
               }
               setTask(taskCopied);
             }}
+            defaultFocused={false}
           />
         );
       } else {
@@ -50,6 +66,25 @@ const TodoCard = () => {
     .filter((value) => {
       return value !== null;
     });
+
+  if (creating === true) {
+    taskArray.push(
+      <Task
+        key={taskArray.length}
+        checked={() => setCreating(false)}
+        taskName=""
+        onEditComplete={(taskName) => {
+          if (taskName === "") {
+            setCreating(false);
+          } else {
+            setTask([...task, { name: taskName, state: "TODO" }]);
+            setCreating(false);
+          }
+        }}
+        defaultFocused={true}
+      />
+    );
+  }
 
   return (
     <TodoContainer>
