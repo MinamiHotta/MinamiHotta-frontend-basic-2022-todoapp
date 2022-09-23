@@ -79,7 +79,7 @@ const TodoCard = () => {
       />
     );
   }
-  console.log(creating);
+
   return (
     <TodoContainer>
       <AddTaskButton checked={handleAddButtonClick} />
