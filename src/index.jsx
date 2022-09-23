@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import MainPage from "./components/Pages/MainPage";
-import "./style.css";
+import { AlertHandlerProvider } from "../../../contexts/alert_handler";
+import AlertManager from "../../Organisms/AlertManager";
 
 ReactDOM.render(
-  <AlertHandler id="temporaryAlert">
+  <AlertHandlerProvider>
+    <AlertManager />
     <MainPage />
-  </AlertHandler>,
+  </AlertHandlerProvider>,
   document.getElementById("app")
 );
