@@ -10,7 +10,7 @@ const TodoCard = () => {
   const AlertHandlerContext = useAlertHandlerContext();
 
   const [task, setTask] = useState([]);
-  const [creating, setCreating] = useState(false);
+  //const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem("taskData")) {
@@ -26,7 +26,8 @@ const TodoCard = () => {
   }, [task]);
 
   const handleAddButtonClick = () => {
-    setCreating(true);
+    //setCreating(true);
+    setTask([...task, { name: "", state: "TODO", initial: true }]);
   };
 
   const taskArray = task
@@ -39,7 +40,7 @@ const TodoCard = () => {
               let taskCopied = [...task];
               taskCopied[index].state = "DONE";
               setTask(taskCopied);
-              setCreating(false);
+              //setCreating(false);
             }}
             taskName={name}
             onEditComplete={(name) => {
@@ -53,10 +54,11 @@ const TodoCard = () => {
                 );
               } else {
                 taskCopied[index].name = name;
+                taskCopied[index].initial = false;
               }
               setTask(taskCopied);
             }}
-            defaultFocused={false}
+            defaultFocused={task[index].initial}
           />
         );
       } else {
@@ -67,25 +69,26 @@ const TodoCard = () => {
       return value !== null;
     });
 
-  if (creating === true) {
-    taskArray.push(
-      <Task
-        key={taskArray.length}
-        checked={() => setCreating(false)}
-        taskName=""
-        onEditComplete={(taskName) => {
-          if (taskName === "") {
-            setCreating(false);
-            AlertHandlerContext.setAlert("タスクの名前が設定されていません。");
-          } else {
-            setTask([...task, { name: taskName, state: "TODO" }]);
-            setCreating(false);
-          }
-        }}
-        defaultFocused={true}
-      />
-    );
-  }
+  // if (creating === true) {
+  //   taskArray.push(
+  //     <Task
+  //       key={taskArray.length}
+  //       checked={() => setCreating(false)}
+  //       taskName=""
+  //       onEditComplete={(name) => {
+  //         console.log(name); //暫定的にログを追加
+  //         if (name === "") {
+  //           setCreating(false);
+  //           AlertHandlerContext.setAlert("タスクの名前が設定されていません。");
+  //         } else {
+  //           setTask([...task, { name: name, state: "TODO" }]);
+  //           setCreating(false);
+  //         }
+  //       }}
+  //       defaultFocused={true}
+  //     />
+  //   );
+  // }
 
   return (
     <TodoContainer>
