@@ -112,6 +112,5 @@ const TodoContainer = styled.div`
 const TasksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 12px 6px 20px;
-  gap: 10px;
+  margin: 0px 6px;
 `;
