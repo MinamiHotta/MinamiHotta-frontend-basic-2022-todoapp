@@ -76,6 +76,7 @@ const TodoCard = () => {
         onEditComplete={(taskName) => {
           if (taskName === "") {
             setCreating(false);
+            AlertHandlerContext.setAlert("タスクの名前が設定されていません。");
           } else {
             setTask([...task, { name: taskName, state: "TODO" }]);
             setCreating(false);
