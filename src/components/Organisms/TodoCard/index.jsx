@@ -31,7 +31,7 @@ const TodoCard = () => {
   };
 
   const taskArray = task
-    .map(({ name, state }, index) => {
+    .map(({ name, state, initial }, index) => {
       if (state === "TODO") {
         return (
           <Task
@@ -49,6 +49,7 @@ const TodoCard = () => {
                 taskCopied = taskCopied.filter((_, i) => {
                   return index !== i;
                 });
+
                 AlertHandlerContext.setAlert(
                   "タスクの名前が設定されていません。"
                 );
@@ -58,7 +59,7 @@ const TodoCard = () => {
               }
               setTask(taskCopied);
             }}
-            defaultFocused={task[index].initial}
+            defaultFocused={initial}
           />
         );
       } else {
