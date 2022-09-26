@@ -6,11 +6,7 @@ import TEXT from "../../../variables/texts";
 const Input = ({ defaultValue = "", onEditComplete }) => {
   const ref = useRef(null);
   useEffect(() => {
-    // if (!defaultFocused) {
-    //   ref.current.blur();
-    // } else {
     ref.current.focus();
-    // }
     ref.current.value = defaultValue;
     ref.current.onblur = (e) => onEditComplete(e.target.value);
     ref.current.onkeypress = (e) => {

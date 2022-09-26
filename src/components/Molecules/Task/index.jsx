@@ -24,7 +24,6 @@ const Task = ({ checked, taskName, onEditComplete, defaultFocused }) => {
               onEditComplete(taskName);
               setNowOnEdit(false);
             }}
-            //defaultFocused={defaultFocused} すでにOrganismsの方で設定しているため、この記述は不要だと思ったので消した
           />
         ) : (
           <TextContainer>
