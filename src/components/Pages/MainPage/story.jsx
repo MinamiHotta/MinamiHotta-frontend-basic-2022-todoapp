@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import AlertManager from "../../Organisms/AlertManager";
+import { AlertHandlerProvider } from "../../../contexts/alert_handler";
 import Component from "./index";
 
 export default {
@@ -11,6 +13,11 @@ export default {
   },
 };
 
-const Template = (args) => <Component {...args} />;
+const Template = (args) => (
+  <AlertHandlerProvider>
+    <AlertManager />
+    <Component {...args} />
+  </AlertHandlerProvider>
+);
 
 export const Default = Template.bind({});

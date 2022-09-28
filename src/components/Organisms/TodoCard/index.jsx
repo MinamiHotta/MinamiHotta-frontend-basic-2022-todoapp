@@ -4,10 +4,11 @@ import Task from "../../Molecules/Task";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
 import BREAKPOINT from "../../../variables/breakpoint";
+import { useAlertHandlerContext } from "../../../contexts/alert_handler";
 
 const TodoCard = () => {
+  const AlertHandlerContext = useAlertHandlerContext();
   const [task, setTask] = useState([]);
-  const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem("taskData")) {
@@ -23,11 +24,11 @@ const TodoCard = () => {
   }, [task]);
 
   const handleAddButtonClick = () => {
-    setCreating(true);
+    setTask([...task, { name: "", state: "TODO", initial: true }]);
   };
 
   const taskArray = task
-    .map(({ name, state }, index) => {
+    .map(({ name, state, initial }, index) => {
       if (state === "TODO") {
         return (
           <Task
@@ -36,7 +37,6 @@ const TodoCard = () => {
               let taskCopied = [...task];
               taskCopied[index].state = "DONE";
               setTask(taskCopied);
-              setCreating(false);
             }}
             taskName={name}
             onEditComplete={(name) => {
@@ -45,12 +45,17 @@ const TodoCard = () => {
                 taskCopied = taskCopied.filter((_, i) => {
                   return index !== i;
                 });
+
+                AlertHandlerContext.setAlert(
+                  "タスクの名前が設定されていません。"
+                );
               } else {
                 taskCopied[index].name = name;
+                taskCopied[index].initial = false;
               }
               setTask(taskCopied);
             }}
-            defaultFocused={false}
+            defaultFocused={initial}
           />
         );
       } else {
@@ -60,25 +65,6 @@ const TodoCard = () => {
     .filter((value) => {
       return value !== null;
     });
-
-  if (creating === true) {
-    taskArray.push(
-      <Task
-        key={taskArray.length}
-        checked={() => setCreating(false)}
-        taskName=""
-        onEditComplete={(taskName) => {
-          if (taskName === "") {
-            setCreating(false);
-          } else {
-            setTask([...task, { name: taskName, state: "TODO" }]);
-            setCreating(false);
-          }
-        }}
-        defaultFocused={true}
-      />
-    );
-  }
 
   return (
     <TodoContainer>
@@ -102,6 +88,5 @@ const TodoContainer = styled.div`
 const TasksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 12px 6px 20px;
-  gap: 10px;
+  margin: 0px 6px;
 `;

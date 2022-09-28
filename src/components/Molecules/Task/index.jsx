@@ -24,7 +24,6 @@ const Task = ({ checked, taskName, onEditComplete, defaultFocused }) => {
               onEditComplete(taskName);
               setNowOnEdit(false);
             }}
-            defaultFocused={defaultFocused}
           />
         ) : (
           <TextContainer>
@@ -41,6 +40,7 @@ export default Task;
 const EachTaskWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 10px;
 `;
 const TextContainer = styled.div`
   display: flex;
